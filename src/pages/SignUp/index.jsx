@@ -16,8 +16,8 @@ export function SignUp() {
 
         <h2>Faça seu login</h2>
 
-        <Input placeholder="E-mail" icon={FiMail}/>
-        <Input placeholder="Senha" icon={FiLock}/>
+        <Input placeholder="E-mail" type ="text" icon={FiMail}/>
+        <Input placeholder="Senha" type ="password" icon={FiLock}/>
 
         <Button title="Entrar"/>
 

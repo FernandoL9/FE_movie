@@ -5,8 +5,10 @@ export function Button({title, loading=false, Action, ...rest }) {
     <Container 
     type="button"
     Action = {Action}
-    disabled={loading}>
+    disabled={loading}
+    {...rest}>
       {loading ? 'Carregando...' : title}
+      
     </Container>
   )
 }

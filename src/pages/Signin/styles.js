@@ -37,32 +37,17 @@ export const Form = styled.form`
     font-weight:400;
   }
 
-  .Option {
+  a {
+    padding: 42px 0;
+
+    font-size: 16px;
+    font-weight:400;
 
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 8px;
 
-    svg {
-      width: 16px;
-      height: 16px;
-      color: ${({theme}) => theme.COLORS.ROSE}
-    }
-
-    a {
-      padding: 42px 0;
-  
-      font-size: 16px;
-      font-weight:400;
-  
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  
-      color: ${({theme}) => theme.COLORS.ROSE};
-  }
+    color: ${({theme}) => theme.COLORS.ROSE};
   }
 `
 

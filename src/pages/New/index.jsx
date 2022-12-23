@@ -35,12 +35,27 @@ export function New() {
   }
 
  async function handleNewNotes() {
+
+    if(!title){
+      return alert("You have a Title to fill")
+    }
+    if(!rating){
+      return alert("You have a Rating to fill")
+    }
+    if(!discription){
+      return alert("You have a Description to fill")
+    }
+    if(!newTags){
+      return alert("You have a pending tag")
+    }
+
     await api.post("/notes", {
       title,
       discription,
       rating,
       tags,
     })
+    console.log({title,discription,tags})
     alert("Movie add success!")
     navigate("/")
   }
@@ -58,10 +73,17 @@ export function New() {
 
             <Form>
               <div>
-              <Input placeholder="Título"/>
-              <Input placeholder="Sua nota (de 0 a 5)" />
+              <Input 
+                placeholder="Título"
+                onChange={e => setTitle(e.target.value)}
+              />
+              <Input 
+                placeholder="Sua nota (de 0 a 5)" 
+                onChange={e => setRating(e.target.value)}/>
               </div>
-              <Textarea placeholder="Observações"/>
+              <Textarea 
+                placeholder="Observações"
+                onChange={e => setDiscripton(e.target.value)}/>
 
               <Section title="Marcadores">
                 <div className="tags">

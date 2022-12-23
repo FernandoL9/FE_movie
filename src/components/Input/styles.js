@@ -29,4 +29,13 @@ export const Container = styled.div`
   svg {
     margin-left: 16px;
   }
+  input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;   
+  }
+  
+  input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}
 `;

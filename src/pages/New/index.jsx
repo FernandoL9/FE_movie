@@ -11,16 +11,38 @@ import {Section} from '../../components/Section'
 import {Textarea} from '../../components/Textarea'
 import {Noteitem} from '../../components/Noteitem'
 import {Button} from '../../components/Button'
+import { api } from '../../services/api'
+import { useNavigate } from 'react-router-dom'
 
 
 export function New() {
+  const [title, setTitle] = useState("")
+  const [discription, setDiscripton] = useState("")
+  const [rating, setRating] = useState("")
 
   const [tags, setTags] = useState([])
   const [newTags, setNewTags] = useState("")
 
+  const navigate = useNavigate()
+
   function handleAddTags() {
     setTags(prevState => [...prevState, newTags])
     setNewTags("")
+  }
+
+  function handleRemoveTags(deleted) {
+    setTags(prevState => prevState.filter(tag => tag !== deleted))
+  }
+
+ async function handleNewNotes() {
+    await api.post("/notes", {
+      title,
+      discription,
+      rating,
+      tags,
+    })
+    alert("Movie add success!")
+    navigate("/")
   }
 
   return (
@@ -37,7 +59,7 @@ export function New() {
             <Form>
               <div>
               <Input placeholder="Título"/>
-              <Input placeholder="Sua nota (de 0 a 5)"/>
+              <Input placeholder="Sua nota (de 0 a 5)" />
               </div>
               <Textarea placeholder="Observações"/>
 
@@ -48,6 +70,7 @@ export function New() {
                       <Noteitem
                         key={String(index)}
                         value={tag}
+                        onClick={() => handleRemoveTags(tag)}
                       />
                     ))
                   }
@@ -64,7 +87,7 @@ export function New() {
               </Section>
               <Option>
                 <Button title="Excluir" Action="true"/>
-                <Button title="Salvar alterações"/>
+                <Button title="Salvar alterações" onClick={handleNewNotes}/>
               </Option>
             
             </Form>

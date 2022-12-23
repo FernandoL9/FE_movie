@@ -1,5 +1,6 @@
-import { Container, Content, Form, Option} from './styles'
+import { useState, prevState } from 'react'
 
+import { Container, Content, Form, Option} from './styles'
 import {FiArrowLeft} from 'react-icons/Fi'
 
 import {Link} from 'react-router-dom'
@@ -13,6 +14,15 @@ import {Button} from '../../components/Button'
 
 
 export function New() {
+
+  const [tags, setTags] = useState([])
+  const [newTags, setNewTags] = useState("")
+
+  function handleAddTags() {
+    setTags(prevState => [...prevState, newTags])
+    setNewTags("")
+  }
+
   return (
     <Container>
       <Header/>
@@ -33,12 +43,22 @@ export function New() {
 
               <Section title="Marcadores">
                 <div className="tags">
-                  <Noteitem value="Drama"/>
-                  <Noteitem value="Ficção Cientifica"/>
-                  <Noteitem isNew placeholder="Novo Marcador"/>
-                  <Noteitem value="Drama"/>
-                  <Noteitem value="Ficção Cientifica"/>
-                  <Noteitem isNew placeholder="Novo Marcador"/>
+                  {
+                    tags.map((tag, index) => (
+                      <Noteitem
+                        key={String(index)}
+                        value={tag}
+                      />
+                    ))
+                  }
+                  {/* fazer alterção no tamanho da caixa */}
+                  <Noteitem  
+                    isNew
+                    placeholder="Novo Marcador"
+                    onChange={e => setNewTags(e.target.value)}
+                    value={newTags}
+                    onClick={handleAddTags}
+                  />
               
                 </div>
               </Section>

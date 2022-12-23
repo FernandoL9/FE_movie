@@ -55,7 +55,7 @@ export const Form = styled.form`
     display: flex;
     /* justify-content: space-between; */
     flex-wrap: wrap;
-
+    
     padding: 16px;
     background-color: ${({theme}) => theme.COLORS.BLACK};
 

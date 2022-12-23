@@ -34,8 +34,17 @@ function AuthProvider({children}) {
     setData({})
   }
 
-  async function updateProfile({ user }) {
+  async function updateProfile({ user, avatarFile}) {
     try {
+
+      if(avatarFile) {
+        const fileUploadForm = new FormData()
+        fileUploadForm.append("avatar", avatarFile)
+
+        const response = await api.patch("users/avatar", fileUploadForm)
+        user.avatar = response.data.avatar;
+      }
+
       await api.put("/users", user);
       localStorage.setItem("@rocketmovienotes:user", JSON.stringify(user))
 
@@ -56,10 +65,11 @@ function AuthProvider({children}) {
     const user = localStorage.getItem("@rocketmovienotes:user")
 
     if(token && user) {
-      api.defaults.headers.common['authorization'] = `Bearer ${token}`
-      setData({
+     api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    
+     setData({
         token,
-        user: JSON.stringify(user)
+        user: JSON.parse(user)
       })
     }
 

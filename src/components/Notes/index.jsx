@@ -16,12 +16,11 @@ export function Notes({data, ...rest}) {
                 }
               </footer>
             }
-            <p>{data.details}</p>
-
+            <p>{data.discription}</p>
             <div className="tags">
-              <Tags title="Ficção Científica"/>
-              <Tags title="Drama"/>
-              <Tags title="Família"/>
+              {
+                // data.tags.map(tag => <Tags key={tag.id} title={tag.name}/>)
+              }
             </div>
         </Content>
     </Container>

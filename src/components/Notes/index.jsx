@@ -19,7 +19,8 @@ export function Notes({data, ...rest}) {
             <p>{data.discription}</p>
             <div className="tags">
               {
-                // data.tags.map(tag => <Tags key={tag.id} title={tag.name}/>)
+                data.tags &&
+                data.tags.map(tag => <Tags key={tag.id} title={tag.name}/>)
               }
             </div>
         </Content>

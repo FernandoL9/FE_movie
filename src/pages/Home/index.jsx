@@ -16,6 +16,8 @@ export function Home() {
   const [search, setSearch] = useState("")
   const [tagSelected, setTagsSelected] = useState([])
   const [notes, setNotes] = useState([])
+ 
+  const teste = new Header()
 
   useEffect(() => {
     async function fetchNotes(){
@@ -26,18 +28,11 @@ export function Home() {
     fetchNotes()
   }, [tagSelected,search])
 
-  useEffect(() => {
-    async function fetchtags(){
-      const response = await api.get("/tags")
-      setTags(response.data)
-    }
-  },[])
-
-
-
+  
   return (
     <Container>
-      <Header/>
+      <Header 
+      />
       <Content>
         <main>
           <div className="brand">

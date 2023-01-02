@@ -12,21 +12,25 @@ export function Header() {
   const  {signOut, user} = useAuth();
 
   const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
-
-  // useEffect(() => {
-  //   async function fetchNotes(){
-  //     const response = await api.get(`/notes?title=${search}&tags=${tagSelected}`)
-  //     setNotes(response.data)
-  //   }
-  //   fetchNotes()
-  // }, [tagSelected,search])
+ 
+  function pesquisar({titulo, teg}) {
+    let search = titulo
+    let tagSelected = teg
+    useEffect(() => {
+      async function fetchNotes(){
+        const response = await api.get(`/notes?title=${search}&tags=${tagSelected}`)
+        setNotes(response.data)
+      }
+      fetchNotes()
+    }, [tagSelected,search])
+  }
 
   return (
     <Container>
       <h1>RocketMovies</h1>
       <input
       placeholder="Pesquisar por titulo" 
-      onChange={e => setSearch(e.target.value)}
+      onChange={(e) => setSearch(e.target.value)}
       type="text">
       </input>
       <Profile to= "/Profile">

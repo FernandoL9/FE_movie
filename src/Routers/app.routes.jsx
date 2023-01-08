@@ -9,9 +9,9 @@ import {Profile} from '../pages/Profile'
 export function AppRouter(){
   return (
     <Routes>
-      <Route path='/New' element = {<New/>} />
+      <Route path='/new' element = {<New/>} />
       <Route path='/' element = {<Home/>}/>
-      <Route path='/Details' element = {<Details/>}/>
+      <Route path='/details/:id' element = {<Details/>}/>
       <Route path='/profile' element = {<Profile/>} />
     </Routes>
   ) 

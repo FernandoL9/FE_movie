@@ -13,9 +13,6 @@ export function Header() {
 
   const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
  
-  function pesquisar({titulo, teg}) {
-    let search = titulo
-    let tagSelected = teg
     useEffect(() => {
       async function fetchNotes(){
         const response = await api.get(`/notes?title=${search}&tags=${tagSelected}`)
@@ -23,7 +20,7 @@ export function Header() {
       }
       fetchNotes()
     }, [tagSelected,search])
-  }
+
 
   return (
     <Container>

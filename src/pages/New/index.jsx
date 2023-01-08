@@ -45,7 +45,7 @@ export function New() {
     if(!discription){
       return alert("You have a Description to fill")
     }
-    if(!newTags){
+    if(newTags){
       return alert("You have a pending tag")
     }
 

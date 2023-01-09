@@ -1,5 +1,5 @@
 import { Container, Form, Avatar} from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
@@ -14,6 +14,7 @@ import {Button} from '../../components/Button'
 export function Profile (){
 
   const {user, updateProfile} =  useAuth()
+  const navigate = useNavigate()
 
   const [name, setName] = useState(user.name) 
   const [email, setEmail] = useState(user.email) 
@@ -23,6 +24,7 @@ export function Profile (){
   const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
   const [avatar, setAvatar] = useState(avatarURL)
   const [avatarFile, setAvatarFile] = useState(null)
+
   
   async function handleUpdate() {
     const updated= {
@@ -46,11 +48,16 @@ export function Profile (){
     setAvatar(imagePreview)
   }
 
+  function handleBack(){
+    navigate(-1)
+  }
+
   return (
     <Container>
       <header>
         <FiArrowLeft/>
-        <Link to="/">Voltar</Link>
+        <button 
+          onClick={handleBack}>Voltar</button>
       </header>
 
       <Form>

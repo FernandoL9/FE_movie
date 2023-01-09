@@ -28,11 +28,15 @@ export function Details() {
     fetchNote()
   }, [])
 
+  function  handleBack(){
+    navigate(-1)
+  }
+
   async function handleRemove(){
     const confirm = window.confirm("Do you want to delete this note?")
     if(confirm){
       await api.delete(`/notes/${params.id}`)
-      navigate("/")
+      handleBack()
     }
   }
   
@@ -45,7 +49,7 @@ export function Details() {
         <main>
           <Content>
             <FiArrowLeft/>
-            <Link to="/">Voltar</Link>
+            <Link onClick={handleBack}>Voltar</Link>
             <button onClick={handleRemove}> Excluir </button>
             <div className="movie">
               <h1>{data.title}</h1> 

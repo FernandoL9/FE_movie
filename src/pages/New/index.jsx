@@ -3,8 +3,6 @@ import { useState, prevState } from 'react'
 import { Container, Content, Form, Option} from './styles'
 import {FiArrowLeft} from 'react-icons/Fi'
 
-import {Link} from 'react-router-dom'
-
 import {Input} from '../../components/Input'
 import {Header} from '../../components/Header'
 import {Section} from '../../components/Section'
@@ -34,6 +32,10 @@ export function New() {
     setTags(prevState => prevState.filter(tag => tag !== deleted))
   }
 
+  function handleBack(){
+    navigate(-1)
+  }
+
  async function handleNewNotes() {
 
     if(!title){
@@ -57,7 +59,7 @@ export function New() {
     })
     console.log({title,discription,tags})
     alert("Movie add success!")
-    navigate("/")
+    handleBack()
   }
 
   return (
@@ -66,7 +68,7 @@ export function New() {
         <Content>
           <main>
             <FiArrowLeft/>
-            <Link to="/">Voltar</Link>
+            <button onClick={handleBack}>voltar</button>
             <div className="movie">
               <h1>Novo filme</h1> 
             </div>

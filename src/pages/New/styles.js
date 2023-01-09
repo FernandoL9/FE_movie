@@ -16,7 +16,9 @@ export const Container = styled.div`
       color: ${({theme}) => theme.COLORS.ROSE};
     }
 
-  a {
+  button {
+      border: none;
+      background: none;
       font-size: 16px;
       color: ${({theme}) => theme.COLORS.ROSE};
       margin-left: 4px;
